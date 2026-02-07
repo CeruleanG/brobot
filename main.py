@@ -1,5 +1,6 @@
 import os
 import discord
+import random
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -19,13 +20,16 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-#@bot.command()
-#async def test(ctx):
-#    await ctx.send(f"Hello")
-
 @bot.command()
 async def joue(ctx):
     await ctx.send(f"{ctx.author.mention} veut jouer, des gens?")
+
+@bot.command()
+async def rand(ctx, *options):
+    if not options:
+        return
+    choice = random.choice(options)
+    await ctx.send(f"{ctx.author.mention} a choisi -> **{choice}**")
 
 
 # Run the bot
